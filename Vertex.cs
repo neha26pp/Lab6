@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -14,7 +12,6 @@ namespace Lab6
         private int x_coordinate;
         private int y_coordinate;
      
-
         public Vertex() { }
 
         //constructor to initialize vertex with ID, x and y coordinates
@@ -58,28 +55,15 @@ namespace Lab6
             this.y_coordinate = y;
         }
 
-      
         //draw a vertex to the screen
         public void drawVertex(PictureBox box, Graphics g)
         {
-           // Bitmap bmp = new Bitmap(box.Width, box.Height);
-
+            int s = 10;
             int x = getX();
             int y = getY();
-            Pen pen = new Pen(Color.Black);
-            Brush brush;
-           
-            g.DrawEllipse(pen, x, y, 5, 5);
-           
-            //Rectangle rect = new Rectangle()
-            //g.FillEllipse()
-            //pen.Dispose();
 
-           
+            Rectangle r1 = new Rectangle(x, y, 2 * s, 2 * s);
+            g.DrawEllipse(new Pen(Color.Black), r1);
         }
-
-
-
-        
     }
 }

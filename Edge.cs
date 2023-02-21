@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Lab6
@@ -14,8 +12,6 @@ namespace Lab6
         //starting and ending vertices of the edge
         private Vertex from_vertex;
         private Vertex to_vertex;
-
-        
 
         public Edge() { }
 
@@ -62,15 +58,43 @@ namespace Lab6
         //draw an edge to the screen
         public void drawEdge(PictureBox box, Graphics g  )
         {
+            int s = 10;
             Vertex from = getFrom();
             Vertex to = getTo();
-            Point p1 = new Point(from.getX(), from.getY());
-            Point p2 = new Point(to.getX(), to.getY());
-            Pen pen = new Pen(Color.Black);
-            g.DrawLine(pen, p1, p2);
-            pen.Dispose();
-           // g.Dispose();
+            Rectangle r1 = new Rectangle(from.getX(), from.getY(), 2 * s, 2 * s);
+            Rectangle r2 = new Rectangle(to.getX(), to.getY(), 2 * s, 2 * s);
 
+            int v = r1.X > r2.Y ? -1 : 1;
+            double d = cosine(new Point(r2.X - r1.X, r2.Y - r1.Y), new Point(v, 0));
+            double x = r1.X + s + v * s * d;
+            double y = r1.Y + s + v * s * Math.Sqrt(1 - d * d);
+            double x2 = r2.X + s - v * s * d;
+            double y2 = r2.Y + s - v * s * Math.Sqrt(1 - d * d);
+
+            g.DrawLine(new Pen(Color.Black), (int)x, (int)y, (int)x2, (int)y2);
+            g.FillEllipse(new SolidBrush(Color.Black), (int)(x - 5), (int)(y - 5), 10, 10);
+
+            Point p = compute(new Point(r2.X - r1.X, r2.Y - r1.Y), Math.PI / 6);
+            g.DrawLine(new Pen(Color.Black), (int)x2, (int)y2, (int)x2 + p.X, (int)y2 + p.Y);
+            p = compute(new Point(r2.X-r1.X, r2.Y-r1.Y), -Math.PI / 6);
+            g.DrawLine(new Pen(Color.Black), (int)x2, (int)y2, (int)x2 + p.X, (int)y2 + p.Y);
+        }
+
+        public double cosine(Point p1, Point p2)
+        {
+            double d0 = p1.X * p2.X + p1.Y * p2.Y;
+            double d1 = Math.Sqrt(p1.X * p1.X + p1.Y * p1.Y);
+            return d0 / d1;
+        }
+
+        public Point compute(Point p1, double angle)
+        {
+            double d1 = Math.Sqrt(p1.X * p1.X + p1.Y * p1.Y);
+            double x = -20 * p1.X / d1;
+            double y = -20 * p1.Y / d1;
+            double nx = x * Math.Cos(angle) - y * Math.Sin(angle);
+            double ny = x * Math.Sin(angle) + y * Math.Cos(angle);
+            return new Point((int)nx, (int)ny);
         }
     }
 }

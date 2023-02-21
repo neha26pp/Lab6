@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Lab6
@@ -28,8 +27,6 @@ namespace Lab6
             graph_ID = id;
         }
 
-      
-        
         //get graph ID
         public int getGrapID()
         {
@@ -52,7 +49,6 @@ namespace Lab6
                 {
                     v  = vertices[i];
                 }
-                
             }
             return v;
         }
@@ -67,16 +63,13 @@ namespace Lab6
                 {
                     e = edges[i];
                 }
-
             }
             return e;
         }
 
-
-         //print the graph to the screen
+        //print the graph to the screen
         public void print(PictureBox box)
         {
-            //box.Refresh();
             Bitmap bmp = new Bitmap(box.Width, box.Height);
             Graphics g = Graphics.FromImage(bmp);
             
@@ -84,7 +77,6 @@ namespace Lab6
             {
                 vertices[i].drawVertex(box, g);
                 Console.WriteLine(vertices[i].getVertexID() + " "  + vertices[i].getX() + "\n");
-
             }
 
            for(int i = 0; i < edges.Count; i++)
@@ -94,8 +86,6 @@ namespace Lab6
             }
 
             box.Image = bmp;
-            //g.Dispose();
-
         }
 
         //create a deep copy of the graph
@@ -119,31 +109,5 @@ namespace Lab6
                 return null;
             }
         }
-
-
-
-
-
-
-        public double cosine(Point p1, Point p2)
-        {
-            double d0 = p1.X * p2.X + p1.Y * p2.Y;
-            double d1 = Math.Sqrt(p1.X * p1.X + p1.Y * p1.Y);
-            return d0 / d1;
-        }
-
-        public Point compute(Point p1, double angle)
-        {
-            double d1 = Math.Sqrt(p1.X * p1.X + p1.Y * p1.Y);
-            double x = -20 * p1.X / d1;
-            double y = -20 * p1.Y / d1;
-            double nx = x * Math.Cos(angle) - y * Math.Sin(angle);
-            double ny = x * Math.Sin(angle) + y * Math.Cos(angle);
-            return new Point((int)nx, (int)ny);
-
-        }
-
-        
-        //print method to display the graph on 
     }
 }

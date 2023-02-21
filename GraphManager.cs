@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Lab6
@@ -16,7 +13,6 @@ namespace Lab6
         //singleton instance to be used everywhere
         private static GraphManager myGraphManager = new GraphManager();
 
-
         //private constructor to prevent creation of another instance
         private GraphManager() { }
 
@@ -26,12 +22,9 @@ namespace Lab6
             return myGraphManager;
         }
 
-
-
         //create a new graph with a user-specified ID
         public void createGraph(int graphID)
         {
-            
             Graph g = new Graph(graphID); //create a new graph
             
             string choice;
@@ -52,8 +45,6 @@ namespace Lab6
                     Vertex v = new Vertex(vertexID, x, y);
                     Console.WriteLine(v.getX().ToString());
                     g.vertices.Add(v);
-
-
                 }
                 else if(choice == "e")
                 {
@@ -164,7 +155,6 @@ namespace Lab6
         //deep copy
         public void copyGraph(int graphID)
         {
-           
             for(int i = 0; i < graphs.Count; i++)
             {
                 if(graphs[i].getGrapID() == graphID)
@@ -179,8 +169,6 @@ namespace Lab6
             }
         }
 
-      
-
         //print the specified graph
         public void printGraph(Form1 form1, int graphID)
         {
@@ -189,26 +177,9 @@ namespace Lab6
             {
                 if (graphs[i].getGrapID() == graphID)
                 {
-                   
-
                     graphs[i].print( form1.showGraphBox);
                 }
             }
         }
     }
-
-   
 }
-
-
-
-
-
-     
-
-
-
-
-     
-
-  

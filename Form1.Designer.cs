@@ -36,19 +36,24 @@ namespace Lab6
             // 
             // showGraphBox
             // 
-            this.showGraphBox.Location = new System.Drawing.Point(262, 93);
+            this.showGraphBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.showGraphBox.BackColor = System.Drawing.Color.SkyBlue;
+            this.showGraphBox.Location = new System.Drawing.Point(-1, 0);
+            this.showGraphBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.showGraphBox.Name = "showGraphBox";
-            this.showGraphBox.Size = new System.Drawing.Size(496, 339);
+            this.showGraphBox.Size = new System.Drawing.Size(952, 557);
             this.showGraphBox.TabIndex = 0;
             this.showGraphBox.TabStop = false;
-            this.showGraphBox.BackColor = Color.SkyBlue;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(950, 554);
             this.Controls.Add(this.showGraphBox);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.showGraphBox)).EndInit();
